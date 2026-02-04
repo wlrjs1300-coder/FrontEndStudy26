@@ -1,0 +1,48 @@
+/* 기존 스타일에 추가 */
+
+/* 5. 첫 번째 자식 선택자 */
+nav li:first-child a {
+ background-color: #f39c12;
+ color: white;
+ font-weight: bold;
+}
+
+/* 6. 마지막 자식에는 다른 스타일 */
+nav li:last-child a {
+ border-right: none;
+ border-radius: 0 5px 5px 0;
+}
+
+/* 7. 클래스와 조합 */
+.special-section h2,
+.special-section p {
+ background-color: #ecf0f1;
+ padding: 10px;
+}
+/* 복잡한 조합 예제 */
+
+/* 8. 다중 클래스 조합 */
+.card.featured {
+ border: 2px solid #e74c3c;
+ box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* 9. 속성 선택자와 조합 */
+input[type="text"]:focus,
+input[type="email"]:focus {
+ border-color: #3498db;
+ outline: none;
+ box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* 10. 인접 형제 선택자 */
+h2 + p {
+ font-size: 1.1em;
+ color: #7f8c8d;
+ margin-top: 0;
+}
+
+/* 11. 일반 형제 선택자 */
+.active ~ li a {
+ opacity: 0.6;
+}

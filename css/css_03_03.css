@@ -1,0 +1,44 @@
+
+    .card {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        margin: 20px;
+        width: 300px;
+    }
+
+    .card-no-padding {
+        /* padding 없음 */
+    }
+
+    .card-with-padding {
+        padding: 20px; /* 모든 방향 20px */
+    }
+
+    .card-custom-padding {
+        padding: 30px 20px 15px 25px; /* 상우하좌 */
+    }
+
+
+.responsive-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 15px; /* 기본 패딩 */
+}
+
+/* 태블릿 이상에서 */
+@media (min-width: 768px) {
+    .responsive-card {
+        padding: 25px 30px; /* 더 넉넉한 패딩 */
+    }
+}
+
+/* 데스크톱에서 */
+@media (min-width: 1024px) {
+    .responsive-card {
+        padding: 35px 40px; /* 가장 넉넉한 패딩 */
+    }
+}

@@ -1,0 +1,40 @@
+/* Box 2를 relative로 이동 */
+#box2 {
+ background-color: #e74c3c;
+ position: relative;
+ top: 20px; /* 원래 위치에서 아래로 20px */
+ left: 50px; /* 원래 위치에서 오른쪽으로 50px */
+}
+/* Box 3을 absolute로 정확한 위치에 배치 */
+#box3 {
+ background-color: #2ecc71;
+ position: absolute;
+ top: 10px; /* 부모(.container) 상단에서 10px */
+ right: 10px; /* 부모(.container) 우측에서 10px */
+}
+/* 고정 버튼 만들기 */
+.fixed-button {
+ position: fixed;
+ bottom: 20px; /* 화면 하단에서 20px */
+ right: 20px; /* 화면 우측에서 20px */
+ width: 60px;
+ height: 60px;
+ background-color: #9b59b6;
+ color: white;
+ border: none;
+ border-radius: 50%;
+ cursor: pointer;
+ font-size: 24px;
+}
+.popup {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+ width: 300px;
+ height: 200px;
+ background-color: white;
+ border: 1px solid #ddd;
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ z-index: 1000; /* 다른 요소 위에 표시 */
+}

@@ -1,0 +1,25 @@
+/* 기본값: content-box */
+.content-box {
+ box-sizing: content-box;
+ width: 200px;
+ padding: 20px;
+ border: 5px solid #e74c3c;
+ /* 실제 크기: 250px (200 + 20×2 + 5×2) */
+}
+
+/* 추천: border-box */
+.border-box {
+ box-sizing: border-box;
+ width: 200px;
+ padding: 20px;
+ border: 5px solid #27ae60;
+ /* 실제 크기: 200px (padding과 border 포함) */
+}
+/* 올바른 예 */
+.button {
+ box-sizing: border-box;
+ width: 100px;
+ padding: 15px;
+ border: 2px solid #333;
+ /* 실제 크기: 100px */
+}

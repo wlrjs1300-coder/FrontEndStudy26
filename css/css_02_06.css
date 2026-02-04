@@ -1,0 +1,59 @@
+/* 메뉴 네비게이션 스타일링 */
+.main-nav ul {
+ display: flex;
+ padding: 0;
+ margin: 0;
+}
+
+.main-nav > ul > li {
+ background-color: #333;
+ color: white;
+ padding: 10px 20px;
+}
+
+.main-nav li:hover {
+ background-color: #555;
+}
+
+/* 서브메뉴는 다른 스타일 */
+.main-nav li ul li {
+ background-color: #666;
+ font-size: 14px;
+}
+
+/* 제목 다음 첫 문단 강조 */
+.content h3 + p {
+ font-size: 18px;
+ color: #2c3e50;
+}
+
+/* 폼 요소 스타일링 */
+.form-group label + input {
+ margin-left: 10px;
+ padding: 5px;
+ border: 1px solid #ddd;
+}
+/* 복합 관계 선택자 활용 */
+.article-container article:first-child h2 {
+ color: #e74c3c;
+}
+
+.article-container article h2 + p.intro {
+ background-color: #ecf0f1;
+ padding: 10px;
+ border-left: 4px solid #3498db;
+}
+
+.article-container article .intro ~ p {
+ text-indent: 20px;
+ line-height: 1.6;
+}
+
+.meta span + span {
+ margin-left: 15px;
+}
+
+.meta span + span:before {
+ content: " | ";
+ color: #bdc3c7;
+}
