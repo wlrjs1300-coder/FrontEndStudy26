@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arsenal FC | Official Fan Page</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23EF0107'/%3E%3Cpath d='M20 50 L80 50 L85 45 L85 35 L80 30 L20 30 L15 35 L15 45 Z' fill='white'/%3E%3Ccircle cx='50' cy='60' r='18' fill='none' stroke='white' stroke-width='6'/%3E%3C/svg%3E">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    :root {
+        --arsenal-red: #EF0107;
+        --arsenal-dark: #061922;
+        --glass-bg: rgba(6, 25, 34, 0.85);
+    }
+
+    body {
+        background-color: #f4f4f4;
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 네비게이션 */
+    .navbar {
+        background-color: var(--arsenal-red) !important;
+        padding: 0.8rem 0;
+        z-index: 2000; /* 최상단 배치 */
+    }
+    .navbar-brand {
+        font-weight: 900;
+        letter-spacing: -1px;
+        font-size: 1.5rem;
+        color: white !important;
+    }
+    .nav-link {
+        color: white !important;
+        padding: 0.5rem 1.2rem !important;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        transition: 0.3s;
+        position: relative;
+        z-index: 2001;
+    }
+    .nav-link:hover {
+        color: #ffcc00 !important;
+        transform: translateY(-2px);
+    }
+
+    /* 메인 히어로 컨테이너 */
+    .hero-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-item {
+        min-height: 400px;
+        background-color: #000;
+    }
+
+    .hero-slide {
+        width: 100%;
+        height: 100%;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    @media (min-width: 992px) {
+        .carousel-item, .hero-slide { height: 85vh; }
+    }
+
+    /* 레이어 순서 정리 */
+    .hero-slide::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+        z-index: 1;
+        pointer-events: none; /* 클릭 이벤트 통과 */
+    }
+
+    .slide-content {
+        position: relative;
+        z-index: 10; /* 배경 레이어보다 위에 배치 */
+        color: white;
+        padding: 0 10%;
+        width: 100%;
+    }
+
+    /* 배경 이미지 */
+    .bg-1 { background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2000'); }
+    .bg-2 { background-image: url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2000'); }
+    .bg-3 { background-image: url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=2000'); }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        line-height: 1.1;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+    }
+
+    /* 버튼 클릭 보장 */
+    .btn-arsenal {
+        background-color: var(--arsenal-red);
+        color: white !important;
+        border: none;
+        padding: 0.8rem 2.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: 0.3s;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        z-index: 20;
+        cursor: pointer;
+    }
+    .btn-arsenal:hover {
+        background-color: #c40005;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(239, 1, 7, 0.4);
+    }
+
+    /* 캐러셀 컨트롤 버튼 레이어 조정 */
+    .carousel-control-prev, .carousel-control-next {
+        z-index: 30;
+        width: 5%;
+    }
+
+    /* 순위표 디자인 */
+    .stats-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        position: relative;
+        z-index: 15;
+    }
+    .stats-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+    .stats-header h6 {
+        color: #ffcc00;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+
+    .table-standings {
+        width: 100%;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.85rem;
+        border-collapse: separate;
+        border-spacing: 0 4px;
+    }
+    .table-standings th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        opacity: 0.5;
+        padding: 0.5rem;
+    }
+    .table-standings td {
+        padding: 0.6rem 0.5rem;
+        background: rgba(255,255,255,0.03);
+    }
+    .table-standings tr td:first-child { border-radius: 4px 0 0 4px; text-align: center; width: 30px; }
+    .table-standings tr td:last-child { border-radius: 0 4px 4px 0; font-weight: 700; color: white; }
+
+    .highlight-row td {
+        background: linear-gradient(90deg, rgba(239, 1, 7, 0.8) 0%, rgba(239, 1, 7, 0.2) 100%) !important;
+        color: white !important;
+        font-weight: 700;
+    }
+    .highlight-row td:first-child {
+        border-left: 3px solid #ffcc00;
+    }
+
+    /* 뉴스 섹션 */
+    .news-item {
+        background-color: white;
+        padding: 1.2rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        border-left: 4px solid transparent;
+        transition: 0.3s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        cursor: pointer;
+    }
+    .news-item:hover {
+        border-left-color: var(--arsenal-red);
+        transform: translateX(5px);
+        background-color: #fffafa;
+    }
+    .news-item h5 { font-size: 1.1rem; font-weight: 700; }
+    .news-item p { font-size: 0.9rem; color: #555; }
+
+    /* Fixture 카드 */
+    .fixture-card {
+        background: linear-gradient(145deg, #061922, #0b2a3a);
+        padding: 2rem;
+        border-radius: 20px;
+        color: white;
+        position: relative;
+    }
+    .team-logo { width: 50px; margin-bottom: 10px; }
+    .vs-badge {
+        background: var(--arsenal-red);
+        padding: 0.2rem 0.8rem;
+        border-radius: 20px;
+        font-weight: 900;
+        font-size: 0.8rem;
+    }
+
+    .btn-match-center {
+        background-color: var(--arsenal-red);
+        border: none;
+        color: white;
+        font-weight: 700;
+        transition: 0.3s;
+        position: relative;
+        z-index: 5;
+    }
+    .btn-match-center:hover {
+        background-color: #c40005;
+        transform: scale(1.02);
+    }
+
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">ARSENAL</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link fw-bold" href="#news">NEWS</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold" href="#matches">MATCH</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold" href="#table">STANDINGS</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-container">
+    <div id="arsenalCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="hero-slide bg-1">
+                    <div class="slide-content">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7">
+                                <span class="badge bg-danger mb-3">LATEST UPDATE</span>
+                                <h1 class="hero-title">WE ARE TOP OF<br>THE LEAGUE</h1>
+                                <p class="hero-subtitle">아스날의 놀라운 여정은 계속됩니다.</p>
+                                <a href="#" class="btn btn-arsenal">Explore Now</a>
+                            </div>
+                            <div class="col-lg-5 d-none d-lg-block">
+                                <div class="stats-card">
+                                    <div class="stats-header d-flex justify-content-between align-items-center">
+                                        <h6>PREMIER LEAGUE</h6>
+                                        <span class="badge bg-dark">2025/26</span>
+                                    </div>
+                                    <table class="table-standings">
+                                        <thead>
+                                            <tr><th>Pos</th><th>Club</th><th class="text-end">PTS</th></tr>
+                                        </thead>
+                                        <tbody id="standingsTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="hero-slide bg-2">
+                    <div class="slide-content text-center">
+                        <h1 class="hero-title">MATCH DAY LIVE</h1>
+                        <p class="hero-subtitle">가장 뜨거운 경기의 순간을 함께하세요.</p>
+                        <a href="#" class="btn btn-arsenal">View Schedule</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="hero-slide bg-3">
+                    <div class="slide-content">
+                        <h1 class="hero-title">BEHIND THE SCENES</h1>
+                        <p class="hero-subtitle">훈련장 뒷이야기, 선수들의 열정을 확인하세요.</p>
+                        <a href="#" class="btn btn-arsenal">Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#arsenalCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#arsenalCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+
+<section id="news" class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <h3 class="fw-900 mb-4">LATEST NEWS</h3>
+            <div class="news-item">
+                <h5>부카요 사카, "팀의 정신력이 어느 때보다 강합니다"</h5>
+                <p>지난 경기 승리 이후 사카는 팀의 결속력이 우승 경쟁의 핵심이라고 강조했습니다...</p>
+                <small class="text-muted">2 hours ago | Official News</small>
+            </div>
+            <div class="news-item">
+                <h5>훈련 센터 소식: 복귀를 앞둔 핵심 선수들</h5>
+                <p>런던 콜니에서 진행된 오늘 훈련에 주요 부상 선수들이 복귀하여 가벼운 훈련을 소화했습니다...</p>
+                <small class="text-muted">5 hours ago | Training Gallery</small>
+            </div>
+        </div>
+        <div id="matches" class="col-lg-4">
+            <h3 class="fw-900 mb-4">NEXT MATCH</h3>
+            <div class="fixture-card text-center">
+                <div class="mb-4 opacity-50 small">PREMIER LEAGUE | EMIRATES STADIUM</div>
+                <div class="d-flex justify-content-between align-items-center mb-4 px-3">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg" class="team-logo" alt="ARS">
+                        <div class="small fw-bold">ARSENAL</div>
+                    </div>
+                    <div class="vs-badge">VS</div>
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" class="team-logo" alt="MCI">
+                        <div class="small fw-bold">MAN CITY</div>
+                    </div>
+                </div>
+                <div class="match-info py-2 px-3 bg-white bg-opacity-10 rounded mb-4">
+                    <div class="fw-bold">FEB 15, 16:30</div>
+                </div>
+                <button class="btn btn-match-center w-100 py-2">MATCH CENTER</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-white py-5">
+    <div class="container text-center">
+        <h4 class="fw-900 mb-3">ARSENAL FC</h4>
+        <p class="opacity-50 small">North London is Red. Since 1886.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stats = [
+            { pos: 1, club: 'Arsenal', pts: 58 },
+            { pos: 2, club: 'Liverpool', pts: 56 },
+            { pos: 3, club: 'Man City', pts: 53 },
+            { pos: 4, club: 'Aston Villa', pts: 49 },
+            { pos: 5, club: 'Tottenham', pts: 47 },
+            { pos: 6, club: 'Man United', pts: 44 }
+        ];
+
+        const tbody = document.getElementById('standingsTable');
+        if(tbody) {
+            tbody.innerHTML = stats.map(s => `
+                <tr class="${s.club === 'Arsenal' ? 'highlight-row' : ''}">
+                    <td>${s.pos}</td>
+                    <td>${s.club}</td>
+                    <td class="text-end">${s.pts}</td>
+                </tr>
+            `).join('');
+        }
+    });
+</script>
+</body>
+</html>
